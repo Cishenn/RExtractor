@@ -1,0 +1,89 @@
+{
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "background-wrapper.js"
+  },
+  "description": "Sadp抽取器浏览器管理插件，支持抽取页面文本和图片，截图OCR识别文字，可划词抽取、侧边栏记录及错误反馈，并存到Sadp抽取器。此程序是东南大学软件工程研三毕业系统，同时也对外开放。程序为单人团队需求分析、系统设计、开发测试，可能存在不成熟的设计，期待您提出宝贵的意见",
+  "action": {},
+  "content_scripts": [
+    {
+      "js": [
+        "content-scripts.js"
+      ],
+      "matches": [
+        "<all_urls>",
+        "*://*/*"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "16": "yuque-logo-16.png",
+    "32": "yuque-logo-32.png",
+    "48": "yuque-logo-48.png",
+    "128": "yuque-logo-128.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "content-scripts.css",
+        "editor.html",
+        "sidePanel.html",
+        "doc.css",
+        "doc.umd.js",
+        "CodeMirror.js",
+        "katex.min.js",
+        "tracert_a385.js",
+        "antd.4.24.13.css",
+        "lake-editor-icon.js",
+        "react.production.min.js",
+        "react-dom.production.min.js",
+        "inject-content-script.js"
+      ],
+      "matches": [
+        "<all_urls>",
+        "*://*/*"
+      ]
+    }
+  ],
+  "content_security_policy": {
+    "script-src": "'self' 'unsafe-eval'",
+    "object-src": "'self'"
+  },
+  "host_permissions": [
+    "<all_urls>",
+    "*://*/*"
+  ],
+  "permissions": [
+    "activeTab",
+    "declarativeNetRequest",
+    "background",
+    "contextMenus",
+    "cookies",
+    "storage",
+    "tabs",
+    "webRequest",
+    "scripting",
+    "sidePanel"
+  ],
+  "side_panel": {
+    "default_path": "sidePanel.html"
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+Period",
+        "mac": "Command+Period"
+      }
+    },
+    "selectArea": {
+      "description": "选取抽取"
+    },
+    "startOcr": {
+      "description": "OCR 提取"
+    },
+    "clipPage": {
+      "description": "全文抽取"
+    }
+  }
+}
